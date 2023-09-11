@@ -1,4 +1,4 @@
-package com.example.diaryapp.presentation.components
+package com.example.diaryapplication.presentation.components
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
@@ -33,14 +33,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.diaryapp.R
+import com.example.diaryapplication.R
 
 @Composable
 fun GoogleButton(
     modifier: Modifier = Modifier,
     loadingState: Boolean = false,
     primaryText: String = "Sign in with Google",
-    secondaryText: String = "Please Wait",
+    secondaryText: String = "Please Wait...",
     shape: Shape = Shapes().extraSmall,
     icon: Int = R.drawable.google_logo,
     borderStockWidth: Dp = 1.dp,
@@ -51,21 +51,23 @@ fun GoogleButton(
 
 ) {
 
+    var buttonText by remember { mutableStateOf(primaryText) }
+
+    LaunchedEffect(key1 = loadingState){
+        buttonText = if (loadingState) {
+            secondaryText
+        } else {
+            primaryText
+        }
+    }
+
     Surface(
-        modifier = modifier.clickable(enabled = !loadingState) { onClick() },
+        modifier = modifier
+            .clickable(enabled = !loadingState) { onClick() },
         shape = shape,
         border = BorderStroke(borderStockWidth, borderColor),
         color = backgroundColor
     ) {
-
-//        var buttonText by remember {
-//            mutableStateOf(primaryText)
-//        }
-
-        LaunchedEffect(key1 = loadingState){
-            if (loadingState) secondaryText else primaryText
-        }
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -87,7 +89,7 @@ fun GoogleButton(
             )
             Spacer(modifier = Modifier.width(12.dp))
             Text(
-                text = primaryText,
+                text = buttonText,
                 style = TextStyle(fontSize = MaterialTheme.typography.bodyMedium.fontSize)
             )
             if (loadingState){
@@ -100,6 +102,8 @@ fun GoogleButton(
             }
         }
     }
+
+
 }
 
 @Composable
@@ -115,5 +119,6 @@ fun GoogleButtonPreview2() {
     GoogleButton(loadingState = true) {
     }
 }
+
 
 

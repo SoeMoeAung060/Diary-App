@@ -4,15 +4,16 @@ plugins {
     id ("kotlin-kapt")
     id ("dagger.hilt.android.plugin")
     id ("io.realm.kotlin")
-//    id ("com.google.gms.google-services")
+    id ("com.google.gms.google-services")
+
 }
 
 android {
-    namespace = "com.example.diaryapp"
+    namespace = "com.example.diaryapplication"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.diaryapp"
+        applicationId = "com.example.diaryapplication"
         minSdk = 21
         targetSdk = 33
         versionCode = 1
@@ -93,7 +94,7 @@ dependencies {
 
     // Mongo DB Realm
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation ("io.realm.kotlin:library-sync:1.10.0")
+    implementation ("io.realm.kotlin:library-sync:1.11.1")
 
     // Dagger Hilt
     implementation ("com.google.dagger:hilt-android:2.44.2")
@@ -127,4 +128,15 @@ dependencies {
     implementation("io.realm:realm-gradle-plugin:10.11.1")
 
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
+
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
+
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation("com.google.firebase:firebase-analytics-ktx")
+
+
+
 }

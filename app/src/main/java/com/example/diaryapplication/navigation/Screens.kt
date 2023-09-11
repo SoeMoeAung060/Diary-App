@@ -1,6 +1,6 @@
-package com.example.diaryapp.navigation
+package com.example.diaryapplication.navigation
 
-import com.example.diaryapp.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
+import com.example.diaryapplication.util.Constants.WRITE_SCREEN_ARGUMENT_KEY
 
 sealed class Screens(val route : String){
     object Authentication:Screens(route = "authentication_screen")
