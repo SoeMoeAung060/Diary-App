@@ -35,6 +35,8 @@ fun AuthenticationScreen(
             .background(MaterialTheme.colorScheme.surface)
             .statusBarsPadding()
             .navigationBarsPadding(),
+
+        // Content is Define main content
         content = {
             ContentWithMessageBar(messageBarState = messageBarState) {
                 AuthenticationContent(
